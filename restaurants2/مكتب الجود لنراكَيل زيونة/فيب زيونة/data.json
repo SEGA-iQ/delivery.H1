@@ -1,0 +1,36 @@
+{
+    "credentials": {
+        "email": "v-c@Delivery.iq",
+        "password": "7667"
+    },
+	"isSuspended": false,
+    "suspensionReason": "تم ايقاف الطلبات الرجاء التواصل مع الدعم الفني",
+    "forceLogout": false,
+    "areas": [
+	    { "name": "زيونة", "price": "3000" },
+        { "name": "كرادة", "price": "4000" },
+        { "name": "كرادة داخل + الخارج", "price": "5000" },
+        { "name": "الجادرية", "price": "5000" },
+        { "name": "الغدير", "price": "4000" },
+        { "name": "تل محمد", "price": "4000" },
+        { "name": "شارع فلسطين", "price": "5000" },
+        { "name": "البلديات", "price": "5000" },
+        { "name": "الحبيبية", "price": "5000" },
+        { "name": "المدينة", "price": "5000" },
+        { "name": "العبيدي", "price": "5000" },
+        { "name": "المشتل", "price": "5000" },
+        { "name": "الكمالية", "price": "5000" },
+        { "name": "الفضيلية", "price": "5000" },
+        { "name": "بغداد جديدة", "price": "5000" },
+        { "name": "النعيرية", "price": "5000" },
+        { "name": "الامين الاول", "price": "5000" },
+        { "name": "الامين الثانية", "price": "5000" },
+        { "name": "الدورة", "price": "8000" },
+        { "name": "باقي الكرخ بصورة عامة", "price": "10000" }
+	
+    ],
+    "restaurantDetails": {
+        "location": "https://maps.app.goo.gl/4Z6BD81j9YTfAK4B6",
+        "serviceFee": 500
+    }
+}

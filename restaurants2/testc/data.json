@@ -1,0 +1,16 @@
+{
+    "credentials": {
+        "email": "testc@gmail.com",
+        "password": "7667"
+    },
+    "areas": [
+    { "name": "جميع مناطق شارع فلسطين", "price": "3000" },
+    { "name": "القاهرة المؤال", "price": "2000" },
+    { "name": "باقي الكرخ بصورة عامة", "price": "10000" },
+    { "name": "اذا لم تجد المنطقه تواصل معنا ونضيفها", "price": "00010" }
+    ],
+    "restaurantDetails": {
+        "location": "https://maps.app.goo.gl/gsSFskoXDHapmRs67",
+        "serviceFee": 500
+    }
+}

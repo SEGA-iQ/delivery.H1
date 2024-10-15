@@ -1,0 +1,19 @@
+{
+    "credentials": {
+        "email": "Abw-watancr@Delivery.iq",
+        "password": "4334"
+    },
+	"isSuspended": false,
+    "suspensionReason": "تم ايقاف الطلبات الرجاء التواصل مع الدعم الفني",
+    "forceLogout": false,
+    "areas": [
+	{ "name": "جميع مناطق شارع فلسطين", "price": "2000" },
+	{ "name": "النهضة", "price": "3000" },
+	{ "name": "باقي الكرخ بصورة عامة", "price": "10000" }
+	
+    ],
+    "restaurantDetails": {
+        "location": "https://maps.app.goo.gl/qaEYzmY52L6pwj2d8",
+        "serviceFee": 100
+    }
+}

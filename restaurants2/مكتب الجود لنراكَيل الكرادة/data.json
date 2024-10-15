@@ -1,0 +1,25 @@
+{
+    "credentials": {
+        "email": "joad-c@Delivery.iq",
+        "password": "7667"
+    },
+	"isSuspended": false,
+    "suspensionReason": "تم ايقاف الطلبات الرجاء التواصل مع الدعم الفني",
+    "forceLogout": false,
+    "areas": [
+	{ "name": "جميع مناطق شارع فلسطين", "price": "2000" },
+	{ "name": "بغداد جديدة", "price": "6000" },
+	{ "name": "زيونة", "price": "5000" },
+	{ "name": "الكرادة السعدون", "price": "5000" },
+	{ "name": "الكرادة الداخل والخارج", "price": "6000" },
+	{ "name": "الجادرية", "price": "7000" },
+	{ "name": "الصالحية + شارع حيفا + العطيفية", "price": "6000" },
+	{ "name": "الكاظمية", "price": "8000" },
+	{ "name": "باقي الكرخ بصورة عامة", "price": "10000" }
+	
+    ],
+    "restaurantDetails": {
+        "location": "https://maps.app.goo.gl/Jx8kwdGUPzkCoZga7",
+        "serviceFee": 500
+    }
+}

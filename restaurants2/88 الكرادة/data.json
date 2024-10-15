@@ -1,0 +1,38 @@
+{
+    "credentials": {
+        "email": "88-cr@Delivery.iq",
+        "password": "7667"
+    },
+	"isSuspended": false,
+    "suspensionReason": "تم ايقاف الطلبات الرجاء التواصل مع الدعم الفني",
+    "forceLogout": false,
+    "areas": [
+       { "name": "الكرادة", "price": "2000" },
+        { "name": "الكرادة داخل + الخارج", "price": "3000" },
+        { "name": "سعدون", "price": "3000" },
+        { "name": "زيونة", "price": "3000" },
+        { "name": "الغدير", "price": "3000" },
+        { "name": "الجادرية", "price": "4000" },
+        { "name": "باب الشرقي", "price": "4000" },
+        { "name": "الشورجة", "price": "4000" },
+        { "name": "شارع فلسطين", "price": "5000" },
+        { "name": "المدينة", "price": "6000" },
+        { "name": "بغداد جديدة", "price": "5000" },
+        { "name": "البلديات", "price": "5000" },
+        { "name": "بلديات الثانية", "price": "6000" },
+        { "name": "الامين الاول", "price": "5000" },
+        { "name": "الامين الثانية", "price": "6000" },
+        { "name": "المشتل", "price": "5000" },
+        { "name": "الكمالية", "price": "6000" },
+        { "name": "العبيدي", "price": "6000" },
+        { "name": "الزعفرانية", "price": "5000" },
+        { "name": "الاعظمية", "price": "7000" },
+        { "name": "الدورة", "price": "7000" },
+        { "name": "باقي الكرخ بصورة عامة", "price": "8000" }
+	
+    ],
+    "restaurantDetails": {
+        "location": "https://maps.app.goo.gl/iSJa2ZwsMZyeTdyC6",
+        "serviceFee": 500
+    }
+}

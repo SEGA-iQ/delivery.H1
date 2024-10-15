@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head><link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دلفري العراق</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo&display=swap">
+</head><link rel="stylesheet" href="styles.css">
+<body>
+
+        
+    <!-- رسالة الصيانة -->
+    <div id="maintenanceMessage" style="display: none; position: fixed; top: 0; left: 0; width: 100%; background-color: #28a745; color: #fff; text-align: center; padding: 8px; font-weight: bold; font-size: 1em; border-bottom: 2px solid #fff; z-index: 9999; border-radius: 0 0 10px 10px;">
+        <p style="margin: 0;">مرحبا بك في دلفري العراق! <br> أسرع خدمة توصيل موثوقة في بغداد.</p>
+    </div>
+
+    <!-- صفحة تسجيل الدخول -->
+    <div class="container" id="loginContainer">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo" class="site-logo">
+        </div>
+
+        <h2>دلفري العراق</h2>
+        <div class="form-group">
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" id="email" name="email" placeholder="أدخل بريدك الإلكتروني هنا">
+            <span id="emailError" class="error-message"></span>
+        </div>
+        <div class="form-group">
+            <label for="password">كلمة المرور:</label>
+            <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور الخاصة بك">
+            <span id="passwordError" class="error-message"></span>
+        </div>
+        <button id="loginBtn">تسجيل الدخول</button>
+    </div>
+<!-- صفحة طلب السائق -->
+<div id="orderContainer" style="display:none;">
+    <div class="container">
+        <div class="form-row">
+            <div class="col-12 text-center">
+                <div id="restaurantName" class="restaurant-name">دلفري العراق</div>
+            </div>
+        </div>
+
+        <!-- إخفاء اختيار المنطقة -->
+        <div class="form-group" style="display:none;">
+            <label for="location">اسم المنطقة:</label>
+            <select id="location" name="location">
+                <option value="">اختر المنطقة</option>
+            </select>
+            <span id="locationError" class="error-message"></span>
+        </div>
+
+        <!-- إخفاء أجرة السائق -->
+        <div class="form-group" style="display:none;">
+            <label for="price">أجرة السائق:</label>
+            <input type="text" id="price" name="price" readonly placeholder="أجرة السائق سيتم تحديده تلقائيًا">
+            <span id="priceError" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="customerNumber"> اسم السائق:</label>
+            <input type="text" id="customerNumber" name="customerNumber" placeholder="الاسم الثلاثي">
+            <span id="customerNumberError" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="orderPrice"> رقم هاتف السائق:</label>
+            <input type="text" id="orderPrice" name="orderPrice" placeholder="رقم الهاتف ">
+            <span id="orderPriceError" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="orderLastFourDigits">المبلغ:</label>
+            <input type="text" id="orderLastFourDigits" name="orderLastFourDigits" placeholder="يجب وضع المبلغ">
+            <span id="orderLastFourDigitsError" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="note">ملاحظة:</label>
+            <input type="text" id="note" name="note" placeholder="مثل: طلب جاهز أو بعد 10 دقائق يجهز">
+            <span id="noteError" class="error-message"></span>
+        </div>
+
+<!-- تعديل رسوم الخدمة -->
+<div class="form-group" style="display:none;">
+    <label for="serviceFee">رسوم الخدمة:</label>
+    <input type="text" id="serviceFee" name="serviceFee" placeholder="أدخل رسوم الخدمة">
+    <span id="serviceFeeError" class="error-message"></span>
+</div>
+
+
+        <button id="submitOrder">اتمام العملية </button>
+
+        <!-- أزرار إضافية (تم إزالتها) -->
+    </div>
+</div>
+
+         <!-- زر الثلاث خطوط -->
+    <div id="menuToggle" style="position: fixed; top: 10px; right: 10px; cursor: pointer; z-index: 1000;">
+        <img src="menu-icon.png" alt="Menu" style="width: 30px; height: 30px;">
+    </div>
+
+    <!-- نافذة الأزرار -->
+    <div id="sideMenu" style="display: none; position: fixed; top: 0; right: 0; width: 200px; height: 100%; background-color: #fff; box-shadow: -2px 0 5px rgba(0,0,0,0.5); z-index: 1001; padding: 20px;">
+        <h4>دلفري العراق</h4>
+        <button id="showOrders" class="btn btn-secondary btn-block">عرض سجل الطلبات</button>
+        <button id="showServiceFee" class="btn btn-secondary btn-block">عرض مجموع المبلغ</button>
+        <button id="logoutBtn" class="btn btn-secondary btn-block">تسجيل خروج من الحساب</button>
+        <button id="closeSideMenu" class="btn btn-danger btn-block" style="margin-top: 10px;">اغلاق النافذة</button>
+        
+        <!-- زر مسح مجموع رسوم الخدمة -->
+        <button id="clearServiceFeeTotal" class="btn" style="background-color: rgb(0, 75, 160); color: rgb(255, 255, 255);">دخول مندوب الشركة</button>
+        <!-- حقل إدخال الرقم السري في مربع حوار -->
+<div id="secretCodeModal" style="display: none;">
+    <input type="text" id="secretCode" placeholder="أدخل الرقم السري" />
+    <button id="confirmClearServiceFee" class="btn btn-primary">تأكيد</button>
+    <button id="cancelClearServiceFee" class="btn btn-secondary">إلغاء</button>
+
+       </div>
+</div>
+
+
+</div>
+
+    </div> 
+    
+        <!-- عنصر لعرض مجموع رسوم الخدمة -->
+        <div id="serviceFeeTotalContainer" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; padding: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); border-radius: 12px; text-align: center; z-index: 1000;">
+            <h4 style="margin-bottom: 15px; font-family: 'Cairo', sans-serif; font-size: 18px; color: #333;">المبلغ الكلي</h4>
+            <p id="serviceFeeTotal" style="font-family: 'Cairo', sans-serif; font-size: 16px; color: #007bff; margin-bottom: 20px;"></p>
+            <button id="closeServiceFee" style="background-color: #ff4d4d; color: white; border: none; padding: 5px 10px; font-size: 14px; border-radius: 5px; cursor: pointer; width: auto; text-align: center;">اغلاق</button>
+        </div>
+
+
+        <div class="orders-modal" id="ordersModal" style="display:none;">
+            <h3>سجل الطلبات</h3>
+            <div class="orders-summary">
+                <div class="summary-item"><span>إجمالي الطلبات:</span> <span id="totalOrders">0</span></div>
+                <div class="summary-item"><span>طلبات اليوم:</span> <span id="todayOrders">0</span></div>
+                <div class="summary-item"><span>طلبات الأسبوع:</span> <span id="weeklyOrders">0</span></div>
+                <div class="summary-item"><span>طلبات الشهر:</span> <span id="monthlyOrders">0</span></div>
+            </div>
+            <table id="ordersTable" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th> اسم السائق</th>
+                        <th></th>
+                        <th></th>
+                        <th> رقم الهاتف</th>
+                        <th>المبلغ</th>
+                        <th>ملاحظة</th>
+                        <th>المبلغ</th>
+                        <th>التاريخ</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersList"></tbody>
+               </table>
+               <button class="close-modal" id="closeModal">إغلاق</button>
+           </div>
+       </div>
+
+    <button id="clearServiceFee" class="btn btn-danger" style="display:none;">مسح مجموع رسوم الخدمة</button>
+    <button id="clearOrders" class="btn btn-danger" style="display:none;">مسح سجل الطلبات</button>
+
+    <div id="successMessage" style="display:none;">تم استلام طلبك، سوف يصل السائق 10 دقائق أو أقل.</div>
+    <div id="errorMessage" style="display:none; background-color: #f3f1f1b9; color: #ff0c24; padding: 20px; border: 1px solid #f5c6cb; border-radius: 8px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; max-width: 400px; text-align: center;">
+        <span id="errorText">حدث خطأ بسبب عدم اتصالك بالإنترنت أو غيرها. لم يتم إرسال الطلب. يرجى المحاولة مرة أخرى.</span>
+        <button id="closeErrorMessage" onclick="hideErrorMessage()" style="margin-top: 15px; background-color: #ff2e2e; border: none; color: #ffffff; cursor: pointer; padding: 5px 10px; border-radius: 5px;">إغلاق</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="script.js"></script> 
+
+    <script>
+        $(document).ready(function() {
+            // إظهار رسالة الصيانة
+            $('#maintenanceMessage').show();
+
+            // إظهار القائمة الجانبية عند الضغط على زر الثلاث خطوط
+            $('#menuToggle').click(function() {
+                $('#sideMenu').toggle();
+            });
+
+            // إغلاق القائمة الجانبية
+            $('#closeSideMenu').click(function() {
+                $('#sideMenu').hide();
+            });
+        });
+    </script>
+   
+</body>
+</html>
+
+<!-- نافذة التأكيد المخصصة -->
+<div id="confirmationModal" class="modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); border-radius: 10px; z-index: 2000;">
+    <div class="modal-content">
+        <p>هل أنت متأكد أنك تريد تسجيل الخروج؟</p>
+        <button id="cancelLogoutBtn">لا</button>
+        <button id="confirmLogoutBtn">نعم</button>
+    </div>
+</div>
+
+
+<div id="loadingIndicator" style="display: none;">
+    <div class="spinner"></div> <!-- أيقونة تحميل -->
+    <span class="loading-text">جاري المعالجة...</span>
+</div>

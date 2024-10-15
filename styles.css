@@ -1,0 +1,891 @@
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f4f4f4;
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 30px;
+    animation: fadeIn 4s ease-in-out;
+}
+
+.site-logo {
+    max-width: 70%;
+    height: auto;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.site-logo:hover {
+    transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #444;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Cairo', sans-serif;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: 600;
+    color: #666;
+    font-family: 'Cairo', sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    text-align: right;
+}
+
+input, select, textarea, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: 'Cairo', sans-serif;
+    direction: ltr; /* توجيه الإدخال بشكل افتراضي لليسار */
+    text-align: left; /* محاذاة النصوص لليسار */
+}
+
+body[dir="rtl"] input, 
+body[dir="rtl"] select, 
+body[dir="rtl"] textarea {
+    text-align: right; /* محاذاة النصوص لليمين عند استخدام اللغة العربية */
+    direction: rtl; /* توجيه الإدخال لليمين عند استخدام اللغة العربية */
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+}
+
+#loginBtn {
+    background-color: #007bff;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#loginBtn:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+#submitOrder {
+    background-color: #28a745;
+    color: white;
+    margin: 20px auto;
+    display: block;
+    width: 60%;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#submitOrder:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
+}
+
+#logoutBtn {
+    background-color: #dc3545;
+    color: white;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: auto;
+    padding: 10px 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.side-button {
+    background-color: #ff8a00;
+    color: white;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    width: auto;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.side-button:hover {
+    background-color: #e52e71;
+    transform: translateY(-3px);
+}
+
+.orders-modal {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* تحسين التوافق مع الهواتف المحمولة */
+@media only screen and (max-width: 768px) {
+    .orders-modal {
+        width: 95%;
+        top: 5%;
+        padding: 10px;
+        font-size: 0.8rem; /* تقليل حجم النص */
+    }
+
+    #ordersTable {
+        width: 100%;
+        display: table;
+    }
+
+    #ordersTable th, #ordersTable td {
+        padding: 8px;
+        font-size: 0.9rem; /* تقليل حجم النص داخل الجدول */
+        text-align: center;
+    }
+}
+
+
+.close-modal {
+    background-color: #dc3545;
+    color: white;
+    margin-top: 20px;
+    width: 100%;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-family: 'Cairo', sans-serif;
+    text-align: left;
+}
+
+body[dir="rtl"] th, 
+body[dir="rtl"] td {
+    text-align: right;
+}
+
+th {
+    background-color: #f4f4f4;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    display: none;
+    text-align: left;
+}
+
+body[dir="rtl"] .error-message {
+    text-align: right;
+}
+
+#successMessage, #errorMessage {
+    padding: 20px;
+    border-radius: 7px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    display: none;
+}
+
+#successMessage {
+    background-color: #4CAF50;
+    color: white;
+    font-family: 'Cairo', sans-serif;
+}
+
+#errorMessage {
+    background-color: #f44336;
+    color: white;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* تحسين التوافق مع الهواتف المحمولة */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    button {
+        font-size: 1rem;
+    }
+
+    #submitOrder {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    #logoutBtn, .side-button {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+#serviceFeeTotalContainer {
+    position: fixed;
+    top: 8px; /* تقليل المسافة من أعلى الشاشة */
+    right: 8px; /* تقليل المسافة من اليمين */
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 8px; /* تقليل المسافات الداخلية */
+    border-radius: 8px; /* تقليل الحدود المستديرة */
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 70%; /* تقليل العرض الأقصى */
+    width: auto;
+    font-family: 'Cairo', sans-serif; /* تطبيق الخط */
+    transition: all 0.3s ease-in-out;
+    font-size: 12px; /* تقليل حجم النص داخل الحاوية */
+}
+
+/* تحسين العرض على شاشات الهواتف المحمولة */
+@media (max-width: 768px) {
+    #serviceFeeTotalContainer {
+        top: 4px;
+        right: 4px;
+        padding: 6px; /* تقليل المسافات أكثر */
+        font-size: 12px; /* تصغير حجم النص */
+        max-width: 85%;
+    }
+
+    #serviceFeeTotalContainer h4 {
+        font-size: 14px; /* تقليل حجم العنوان */
+    }
+
+    #serviceFeeTotalContainer p {
+        font-size: 12px; /* تصغير النص في الفقرة */
+    }
+}
+
+/* تحسين العرض على شاشات أصغر */
+@media (max-width: 480px) {
+    #serviceFeeTotalContainer {
+        top: 3px;
+        right: 3px;
+        padding: 5px; /* تقليل المسافات الداخلية أكثر */
+        font-size: 10px; /* تقليل حجم النص ليكون أصغر */
+        max-width: 90%;
+    }
+
+    #serviceFeeTotalContainer h4 {
+        font-size: 12px; /* تصغير العنوان */
+    }
+
+    #serviceFeeTotalContainer p {
+        font-size: 10px; /* تصغير النص داخل الفقرة */
+    }
+}
+
+/* تنسيق نافذة التأكيد المخصصة */
+.modal {
+    display: none; /* مخفية بشكل افتراضي */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* خلفية شبه شفافة */
+}
+
+.modal-content {
+    background-color: #dc3545; /* لون الخلفية أحمر */
+    color: white; /* لون النص أبيض */
+    margin: 15% auto; /* تتمركز في منتصف الشاشة */
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 300px; /* عرض ثابت */
+    text-align: center;
+    border: none;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.modal-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: white;
+    position: relative; /* لجعل زر نعم يتحرك */
+}
+
+/* زر نعم باللون الأحمر */
+#confirmLogoutBtn {
+    background-color: #d9534f;
+}
+
+/* زر لا باللون الأخضر */
+#cancelLogoutBtn {
+    background-color: #28a745;
+}
+
+#confirmLogoutBtn:hover {
+    background-color: #c9302c;
+}
+
+#cancelLogoutBtn:hover {
+    background-color: #218838;
+}
+
+#loadingIndicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex; /* استخدام الفليكس لتوسيع المحتوى */
+    align-items: center; /* محاذاة المحتوى عموديًا */
+    justify-content: center; /* محاذاة المحتوى أفقيًا */
+    transition: opacity 0.3s ease; /* تأثير انتقال لتغيير الشفافية */
+}
+
+.loading-text {
+    margin-left: 10px; /* تباعد بين الأيقونة والنص */
+    font-size: 18px; /* حجم النص */
+    color: #333; /* لون النص */
+}
+
+
+.spinner {
+    width: 24px;
+    height: 24px;
+    border: 4px solid rgba(0, 0, 0, 0.3);
+    border-top: 4px solid #007bff; /* لون الجزء العلوي */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* حركة دائرية */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* تحسين استجابة الجدول للأجهزة المختلفة */
+.orders-modal {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* إضافة تمرير أفقي للجدول */
+}
+
+.orders-summary {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    flex-wrap: wrap; /* تحسين توزيع العناصر على الأجهزة الصغيرة */
+}
+
+.summary-item {
+    font-size: 0.9em;
+    color: #333;
+    margin-bottom: 10px; /* إضافة هامش بين العناصر */
+}
+
+#ordersTable {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* تحسين عرض الجدول ليتكيف مع المساحة المتاحة */
+}
+
+#ordersTable th,
+#ordersTable td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.9em;
+}
+
+#ordersTable th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+#ordersTable tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.orders-modal h3 {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.close-modal {
+    display: block;
+    width: 100px;
+    margin: 15px auto;
+    padding: 8px 15px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.close-modal:hover {
+    background-color: #c82333;
+}
+
+/* تحسين استجابة التصميم للأجهزة الصغيرة */
+@media (max-width: 768px) {
+    .orders-summary {
+        flex-direction: column; /* تحويل العناصر إلى عمودي للأجهزة الصغيرة */
+        align-items: center;
+    }
+
+    #ordersTable th, #ordersTable td {
+        font-size: 0.8em; /* تصغير حجم الخط للأجهزة الصغيرة */
+        padding: 8px;
+    }
+
+    .orders-modal {
+        padding: 10px;
+    }
+
+    .close-modal {
+        width: 80px;
+        padding: 6px 10px;
+    }
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f4f4f4;
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    width: 85%; /* تصغير عرض الحاوية */
+    max-width: 1000px; /* تقليل العرض الأقصى */
+    margin: 30px auto; /* تقليل المسافات الخارجية */
+    padding: 15px; /* تقليل المسافات الداخلية */
+    background-color: #ffffff;
+    border-radius: 8px; /* تقليل استدارة الحواف */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem; /* تصغير حجم النص */
+    color: #444;
+    margin-bottom: 20px; /* تقليل المسافات السفلية */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 15px; /* تقليل المسافة بين مجموعات الإدخال */
+}
+
+input, select, textarea, button {
+    width: 100%;
+    padding: 10px; /* تقليل المسافات الداخلية */
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px; /* تقليل استدارة الحواف */
+    box-sizing: border-box;
+    font-size: 0.9rem; /* تقليل حجم النص */
+    font-family: 'Cairo', sans-serif;
+}
+
+button {
+    padding: 10px; /* تقليل المسافات الداخلية للأزرار */
+    margin-top: 15px; /* تقليل المسافات العلوية */
+    font-size: 1rem; /* تصغير حجم النص */
+}
+
+#submitOrder {
+    width: 55%; /* تصغير عرض زر طلب السائق */
+    margin: 15px auto; /* تقليل المسافات الخارجية */
+}
+
+.orders-modal {
+    width: 85%; /* تقليل عرض النافذة */
+    padding: 10px; /* تقليل المسافات الداخلية */
+    background-color: #f9f9f9;
+    border-radius: 6px; /* تقليل استدارة الحواف */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.orders-summary {
+    font-size: 0.85em; /* تقليل حجم النص في ملخص الطلبات */
+}
+
+#ordersTable th, #ordersTable td {
+    padding: 8px; /* تقليل الحشو داخل الخلايا */
+    font-size: 0.9rem; /* تصغير حجم النص */
+}
+
+.close-modal {
+    margin-top: 15px;
+    padding: 8px;
+    font-size: 0.9rem; /* تقليل حجم النص في زر الإغلاق */
+}
+
+/* تحسين العرض على الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+
+    #submitOrder {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .orders-modal {
+        width: 95%;
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+
+    #ordersTable th, #ordersTable td {
+        font-size: 0.8rem; /* تقليل حجم النص داخل الجدول */
+    }
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f4f4f4;
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    width: 80%; /* تصغير عرض الحاوية */
+    max-width: 900px; /* تقليل العرض الأقصى */
+    margin: 20px auto; /* تقليل المسافات الخارجية */
+    padding: 10px; /* تقليل المسافات الداخلية */
+    background-color: #ffffff;
+    border-radius: 6px; /* تقليل استدارة الحواف */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.8rem; /* تصغير حجم النص */
+    color: #444;
+    margin-bottom: 15px; /* تقليل المسافات السفلية */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 10px; /* تقليل المسافة بين مجموعات الإدخال */
+}
+
+input, select, textarea, button {
+    width: 100%;
+    padding: 8px; /* تقليل المسافات الداخلية */
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px; /* تقليل استدارة الحواف */
+    box-sizing: border-box;
+    font-size: 0.8rem; /* تقليل حجم النص */
+    font-family: 'Cairo', sans-serif;
+}
+
+button {
+    padding: 8px; /* تقليل المسافات الداخلية للأزرار */
+    margin-top: 10px; /* تقليل المسافات العلوية */
+    font-size: 0.9rem; /* تصغير حجم النص */
+}
+
+#submitOrder {
+    width: 50%; /* تصغير عرض زر طلب السائق */
+    margin: 10px auto; /* تقليل المسافات الخارجية */
+}
+
+.orders-modal {
+    width: 80%; /* تقليل عرض النافذة */
+    padding: 10px; /* تقليل المسافات الداخلية */
+    background-color: #f9f9f9;
+    border-radius: 6px; /* تقليل استدارة الحواف */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.orders-summary {
+    font-size: 0.75em; /* تقليل حجم النص في ملخص الطلبات */
+}
+
+#ordersTable th, #ordersTable td {
+    padding: 6px; /* تقليل الحشو داخل الخلايا */
+    font-size: 0.8rem; /* تصغير حجم النص */
+}
+
+.close-modal {
+    margin-top: 10px;
+    padding: 6px;
+    font-size: 0.8rem; /* تقليل حجم النص في زر الإغلاق */
+}
+
+/* تحسين العرض على الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 8px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    button {
+        font-size: 0.8rem;
+    }
+
+    #submitOrder {
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .orders-modal {
+        width: 90%;
+        padding: 8px;
+        font-size: 0.75rem;
+    }
+
+    #ordersTable th, #ordersTable td {
+        font-size: 0.7rem; /* تقليل حجم النص داخل الجدول */
+    }
+}
+
+/* تحسين العرض على الشاشات الصغيرة جداً */
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 5px;
+    }
+
+    h2 {
+        font-size: 1.2rem; /* تقليل حجم العنوان */
+    }
+
+    #submitOrder {
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .orders-modal {
+        width: 95%;
+        padding: 5px;
+    }
+
+    #ordersTable th, #ordersTable td {
+        font-size: 0.6rem; /* تقليل حجم النص داخل الجدول */
+    }
+
+    .close-modal {
+        padding: 4px;
+        font-size: 0.7rem; /* تقليل حجم النص في زر الإغلاق */
+    }
+}
+
+/* تهيئة الحقل في المنتصف */
+.center-aligned {
+    display: flex;
+    flex-direction: column; /* ترتيب العناصر عموديًا */
+    align-items: center; /* توسيط العناصر أفقيًا */
+    justify-content: center; /* توسيط العناصر عموديًا */
+    text-align: center; /* توسيط النص */
+    margin: 20px 0; /* مسافة من الأعلى والأسفل */
+}
+
+/* تهيئة الحقل في المنتصف */
+.center-aligned {
+    display: flex;
+    flex-direction: column; /* ترتيب العناصر عموديًا */
+    align-items: center; /* توسيط العناصر أفقيًا */
+    justify-content: center; /* توسيط العناصر عموديًا */
+    text-align: center; /* توسيط النص */
+    margin: 10px 0; /* مسافة أصغر من الأعلى والأسفل */
+}
+
+/* تحسين تنسيق الحقل الخاص بأجرة السائق */
+#price {
+    width: 100px; /* عرض أصغر */
+    padding: 5px 7px; /* تقليل المسافة الداخلية */
+    font-size: 12px; /* حجم خط أصغر ولكنه واضح */
+    border: 1px solid #007bff; /* لون حدود أزرق هادئ */
+    border-radius: 4px; /* زوايا دائرية بسيطة */
+    background-color: #f0f8ff; /* خلفية فاتحة ناعمة */
+    color: #333; /* لون نص داكن لسهولة القراءة */
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* ظل خفيف لتحديد الحقل */
+    cursor: not-allowed; /* الإبقاء على مؤشر عدم الكتابة */
+    text-align: center; /* توسيط النص داخل الحقل */
+    transition: all 0.3s ease; /* حركة سلسة عند التركيز */
+}
+
+#price:hover, #price:focus {
+    border-color: #0056b3; /* لون حدود أغمق عند التركيز */
+    background-color: #e9f3ff; /* خلفية أفتح قليلاً عند التفاعل */
+}
+
+#priceError {
+    color: red;
+    font-size: 11px; /* حجم أصغر لرسالة الخطأ */
+    margin-top: 3px; /* مسافة صغيرة بين الحقل ورسالة الخطأ */
+}
+
+.form-group label[for="price"] {
+    font-size: 12px; /* حجم نص أصغر للعنوان */
+    color: #555; /* لون رمادي متوسط للعنوان */
+    margin-bottom: 3px; /* مسافة صغيرة بين العنوان والحقل */
+}
+
+#serviceFeeTotalContainer {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    position: relative;
+    width: 250px;
+    text-align: center;
+}
+
+#showServiceFee {
+    margin-top: 10px;
+}
+
+#serviceFeeTotalContainer {
+    display: none; /* يبدأ العنصر مخفي */
+    position: fixed; /* ليكون العنصر في مكان ثابت بالنسبة للشاشة */
+    top: 50%; /* تمركز في منتصف الشاشة عموديًا */
+    left: 50%; /* تمركز في منتصف الشاشة أفقيًا */
+    transform: translate(-50%, -50%); /* لضبط التمركز بالضبط في المنتصف */
+    background-color: #fff; /* خلفية بيضاء للصندوق */
+    padding: 20px 40px; /* مسافة داخلية أكبر لمظهر أكثر فخامة */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* ظل ناعم وعميق للصندوق */
+    border-radius: 12px; /* زوايا مستديرة للصندوق */
+    text-align: center; /* محاذاة النص في الوسط */
+    z-index: 1000; /* التأكد من ظهوره فوق جميع العناصر الأخرى */
+    font-family: 'Cairo', sans-serif; /* خط أنيق */
+}
+
+#serviceFeeTotal {
+    font-size: 16px; /* حجم خط أكبر لمجموع الرسوم */
+    color: #007bff; /* لون أزرق هادئ للرسوم */
+    margin-bottom: 20px; /* مسافة بين النص والزر */
+}
+
+h4 {
+    font-size: 18px; /* حجم خط أكبر للعنوان */
+    color: #333; /* لون داكن للعنوان */
+    margin-bottom: 15px; /* مسافة تحت العنوان */
+}
+
+#closeServiceFee {
+    background-color: #ff4d4d; /* لون أحمر جذاب للزر */
+    color: white; /* لون الخط أبيض */
+    border: none; /* إزالة الحدود */
+    padding: 5px 10px; /* مسافة داخلية للزر */
+    font-size: 14px; /* حجم الخط للزر */
+    border-radius: 5px; /* زوايا مستديرة للزر */
+    cursor: pointer; /* مؤشر عند التفاعل مع الزر */
+    width: auto; /* جعل الزر بحجم مناسب للمحتوى */
+    text-align: center; /* محاذاة النص داخل الزر */
+}
+
+#closeServiceFee:hover {
+    background-color: #ff1a1a; /* لون أكثر إشراقًا عند التمرير على الزر */
+}
+
+#clearServiceFeeTotal {
+    margin-top: 10px; /* اضافة مساحة فوق الزر */
+}
