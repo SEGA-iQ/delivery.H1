@@ -75,9 +75,10 @@
 
         <div class="form-group">
             <label for="orderLastFourDigits">المبلغ:</label>
-            <input type="text" id="orderLastFourDigits" name="orderLastFourDigits" placeholder="يجب وضع المبلغ">
+            <input type="text" id="orderLastFourDigits" name="orderLastFourDigits" placeholder="يجب وضع المبلغ" oninput="formatNumberWithCommas(this)">
             <span id="orderLastFourDigitsError" class="error-message"></span>
         </div>
+        
 
         <div class="form-group">
             <label for="note">ملاحظة:</label>
@@ -85,6 +86,46 @@
             <span id="noteError" class="error-message"></span>
         </div>
 
+        <button id="submitOrder">اتمام العملية</button>
+        
+        <script>
+        // دالة لإضافة الفواصل عند الكتابة في حقل الإدخال
+        function formatNumberWithCommas(input) {
+            // إزالة جميع الأحرف غير الأرقام أولاً
+            let value = input.value.replace(/,/g, '');
+            
+            // التأكد من أن القيمة المدخلة هي رقم صحيح قبل التنسيق
+            if (!isNaN(value) && value !== '') {
+                // تنسيق الرقم وإضافة الفواصل
+                value = Number(value).toLocaleString('en');
+            }
+            
+            // تحديث حقل الإدخال بالقيمة الجديدة
+            input.value = value;
+        }
+        
+        // دالة لإزالة الفواصل من قيمة الحقل قبل الإرسال
+        function removeCommasBeforeSubmit() {
+            // الحصول على قيمة الحقل
+            let orderInput = document.getElementById('orderLastFourDigits');
+            
+            // إزالة الفواصل من قيمة الحقل
+            orderInput.value = orderInput.value.replace(/,/g, '');
+            
+            // هنا يمكنك إضافة منطق إضافي لإرسال الطلب أو التحقق من صحة البيانات
+            console.log('تمت إزالة الفواصل من القيمة:', orderInput.value);
+        }
+        
+        // ربط دالة إزالة الفواصل بالزر "اتمام العملية"
+        document.getElementById('submitOrder').addEventListener('click', function(event) {
+            // استدعاء دالة إزالة الفواصل
+            removeCommasBeforeSubmit();
+        
+            // يمكنك هنا إضافة منطق إضافي مثل منع الإرسال الافتراضي للنموذج
+            event.preventDefault(); // إذا كنت لا تريد تقديم النموذج بعد النقر مباشرة
+        });
+        </script>
+        
 <!-- تعديل رسوم الخدمة -->
 <div class="form-group" style="display:none;">
     <label for="serviceFee">رسوم الخدمة:</label>
@@ -93,7 +134,7 @@
 </div>
 
 
-        <button id="submitOrder">اتمام العملية </button>
+        <button id="submittOrder"></button>
 
         <!-- أزرار إضافية (تم إزالتها) -->
     </div>
@@ -210,3 +251,7 @@
     <div class="spinner"></div> <!-- أيقونة تحميل -->
     <span class="loading-text">جاري المعالجة...</span>
 </div>
+
+
+
+
