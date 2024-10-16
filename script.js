@@ -390,26 +390,31 @@ function validateOrderForm(customerNumber, location, price, orderPrice, orderDig
         hideFieldError('locationError');
     }
 
-    // التحقق من باقي الحقول
-    if (customerNumber && typeof customerNumber === 'string') {
-        hideFieldError('customerNumberError');
+    // التحقق من رقم العميل (حقل إجباري)
+    if (!customerNumber || typeof customerNumber !== 'string') {
+        showFieldError('customerNumberError', 'يرجى إدخال اسم الكابتن .');
+        isValid = false;
     } else {
         hideFieldError('customerNumberError');
     }
 
-    if (orderPrice && isNaN(orderPrice)) {
-        showFieldError('orderPriceError', 'يرجى إدخال سعر طلب صحيح.');
+    // التحقق من سعر الطلب (يجب أن يكون 11 رقمًا فقط)
+    if (!orderPrice || isNaN(orderPrice) || orderPrice.toString().length !== 11) {
+        showFieldError('orderPriceError', 'يرجى إدخال رقم مكون من 11 رقمًا.');
         isValid = false;
     } else {
         hideFieldError('orderPriceError');
     }
 
-    if (orderDigits && (orderDigits.length < 1 || orderDigits.length > 24 || isNaN(orderDigits))) {
-        showFieldError('orderLastFourDigitsError', 'يرجى إدخال رقم طلب صحيح من 2 إلى 24 أرقام.');
+    let sanitizedOrderDigits = orderDigits.replace(/,/g, '');
+
+    if (!sanitizedOrderDigits || isNaN(sanitizedOrderDigits) || sanitizedOrderDigits % 500 !== 0) {
+        showFieldError('orderLastFourDigitsError', 'يرجى إدخال رقم طلب صحيح، مثل 2,000 أو 3,500.');
         isValid = false;
     } else {
         hideFieldError('orderLastFourDigitsError');
     }
+    // حقل الملاحظة ليس إجباريًا، لذلك لا حاجة للتحقق منه
 
     return isValid;
 }
