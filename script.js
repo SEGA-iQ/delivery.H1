@@ -309,7 +309,7 @@ const channelId = restaurants.includes(currentRestaurant.name) ? chatId1 : chatI
 
         if (!response.ok) throw new Error('فشل في إرسال الرسالة إلى Telegram');
         console.log('تم إرسال الرسالة إلى Telegram بنجاح.');
-        showSuccessMessage('تم إرسال الطلب بنجاح وسيصل السائق خلال 10 دقائق أو أقل.');
+        showSuccessMessage('تمت العملية بنجاح');
     } catch (error) {
         console.error('خطأ في إرسال الرسالة:', error);
         showErrorMessage('حدث خطأ بسبب عدم اتصالك بالإنترنت أو غيرها. لم يتم إرسال الطلب. يرجى المحاولة مرة أخرى.');
@@ -408,14 +408,15 @@ function validateOrderForm(customerNumber, location, price, orderPrice, orderDig
 
     let sanitizedOrderDigits = orderDigits.replace(/,/g, '');
 
-    if (!sanitizedOrderDigits || isNaN(sanitizedOrderDigits) || sanitizedOrderDigits % 500 !== 0) {
-        showFieldError('orderLastFourDigitsError', 'يرجى إدخال رقم طلب صحيح، مثل 2,000 أو 3,500.');
+    if (!sanitizedOrderDigits || isNaN(sanitizedOrderDigits) || !/^\d*(250|500|750)$/.test(sanitizedOrderDigits)) {
+        showFieldError('orderLastFourDigitsError', 'يرجى إدخال رقم طلب صحيح، مثل 8,500 أو 8,750 أو 8,250.');
         isValid = false;
     } else {
         hideFieldError('orderLastFourDigitsError');
     }
+    
     // حقل الملاحظة ليس إجباريًا، لذلك لا حاجة للتحقق منه
-
+    
     return isValid;
 }
 
