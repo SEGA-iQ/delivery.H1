@@ -889,3 +889,153 @@ h4 {
 #clearServiceFeeTotal {
     margin-top: 10px; /* اضافة مساحة فوق الزر */
 }
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #eef2f5; /* لون خلفية أفتح */
+    color: #444; /* نص بلون داكن لتسهيل القراءة */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff; /* خلفية بيضاء */
+    border-radius: 15px; /* زوايا دائرية أكبر */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* ظل أعمق */
+}
+
+h2 {
+    color: #0056b3; /* لون أزرق قوي */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em; /* حجم خط أكبر */
+}
+
+button {
+    background-color: #4CAF50; /* لون الخلفية */
+    color: white; /* لون النص */
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px; /* حواف دائرية */
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.3s; /* تأثير الانتقال عند الضغط */
+}
+
+button:hover {
+    background-color: #45a049; /* لون الخلفية عند مرور الماوس */
+    transform: scale(1.05); /* تكبير خفيف عند المرور */
+}
+
+button:active {
+    transform: scale(1); /* استعادة الحجم الأصلي عند الضغط */
+}
+
+.error-message {
+    color: #dc3545; /* لون أحمر لرسائل الأخطاء */
+    margin-top: 5px; /* تباعد أعلى */
+}
+
+input[type="text"], input[type="number"], input[type="email"], select {
+    width: 100%;
+    padding: 14px 22px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 12px;
+    background-color: #f4f4f9; /* خلفية فاتحة مريحة */
+    color: #333333; /* لون نص داكن */
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif; /* خط حديث وأنيق */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+}
+
+input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, select:focus {
+    background-color: #ffffff; /* خلفية بيضاء ناصعة عند التركيز */
+    color: #333333; /* لون نص داكن */
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.5); /* ظل أزرق عند التركيز */
+    outline: none;
+}
+
+input::placeholder {
+    color: #999999; /* لون نص الإرشادات رمادي فاتح */
+    font-style: italic;
+}
+
+select {
+    background-color: #f4f4f9; /* نفس خلفية الحقول */
+    color: #333333; /* نفس لون النص */
+    padding-right: 20px;
+}
+
+#maintenanceMessage {
+    background-color: #ffc107; /* لون أصفر */
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 20px; /* تباعد أسفل */
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px; /* حواف دائرية للحاوية */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ظل مميز حول الحاوية */
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-row input, .form-row select {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.form-container {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* تأثير عند تحميل النموذج */
+}
+
+.form-container:hover {
+    transform: translateY(-10px); /* رفع النموذج عند تمرير الفأرة */
+    opacity: 0.95; /* تخفيف الشفافية بشكل بسيط */
+}
+
+@media screen and (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-row input, .form-row select {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    button {
+        width: 100%; /* الأزرار تكون كاملة العرض على الأجهزة الصغيرة */
+    }
+}
