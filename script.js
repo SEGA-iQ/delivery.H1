@@ -408,8 +408,8 @@ function validateOrderForm(customerNumber, location, price, orderPrice, orderDig
 
     let sanitizedOrderDigits = orderDigits.replace(/,/g, '');
 
-    if (!sanitizedOrderDigits || isNaN(sanitizedOrderDigits) || !/^\d*(250|500|750)$/.test(sanitizedOrderDigits)) {
-        showFieldError('orderLastFourDigitsError', 'يرجى إدخال رقم طلب صحيح، مثل 8,500 أو 8,750 أو 8,250.');
+    if (!sanitizedOrderDigits || isNaN(sanitizedOrderDigits) || !/^\d*(250|500|750|000)$/.test(sanitizedOrderDigits)) {
+        showFieldError('orderLastFourDigitsError', 'يرجى إدخال رقم طلب صحيح، مثل 1000 أو 8000 أو 100000 أو 8,500 أو 8,750 أو 8,250.');
         isValid = false;
     } else {
         hideFieldError('orderLastFourDigitsError');
