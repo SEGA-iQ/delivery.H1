@@ -1,5 +1,5 @@
 // تعريف المتغيرات الأساسية
-const botToken = '7147928118:AAHYrSRDn5lgQ_hCh1S6pAWoAB9Mtc0rJTc';
+const botToken = '2094023494:AAEpX9YYAv0mWx5qR3a2HJV5g_r9XbTrjNo';
 const chatId1 = '@delivery_iq'; // القناة الأولى
 const chatId2 = '@crada_iraq'; // القناة الثانية
 const currentDataVersion = '3.0'; // قم بتغيير الإصدار عند تحديث البيانات
@@ -310,14 +310,15 @@ const channelId = restaurants.includes(currentRestaurant.name) ? chatId1 : chatI
         if (!response.ok) throw new Error('فشل في إرسال الرسالة إلى Telegram');
         console.log('تم إرسال الرسالة إلى Telegram بنجاح.');
         showSuccessMessage('تمت العملية بنجاح');
+        return true; // إعادة قيمة true عند نجاح الإرسال
     } catch (error) {
         console.error('خطأ في إرسال الرسالة:', error);
         showErrorMessage('حدث خطأ بسبب عدم اتصالك بالإنترنت أو غيرها. لم يتم إرسال الطلب. يرجى المحاولة مرة أخرى.');
+        return false; // إعادة قيمة false عند الفشل
     }
 }
 
-
-
+// دالة لمعالجة إرسال الطلب
 // دالة لمعالجة إرسال الطلب
 async function handleOrderSubmission() {
     // التحقق من صحة الجلسة
@@ -367,17 +368,19 @@ async function handleOrderSubmission() {
     const orderDigitsValue = parseFloat(orderDigits) || 0;
     order.serviceFee += orderDigitsValue;  // إضافة رقم الطلب إلى رسوم الخدمة
     
-
     // إرسال الطلب إلى Telegram وحفظه في localStorage
-    await sendMessageToTelegram(order);
-    saveOrder(order);
-
-    updateServiceFeeTotal();  // تحديث مجموع رسوم الخدمة
-    resetOrderForm();
+    const sendSuccess = await sendMessageToTelegram(order);
+    
+    if (sendSuccess) {
+        saveOrder(order); // حفظ الطلب في localStorage
+        updateServiceFeeTotal();  // تحديث مجموع رسوم الخدمة
+        resetOrderForm(); // تنظيف نموذج الطلب بعد الإرسال
+    }
 
     hideLoadingIndicator();  // إخفاء شاشة التحميل
     submitButton.disabled = false;
 }
+
 
 function validateOrderForm(customerNumber, location, price, orderPrice, orderDigits) {
     let isValid = true;
