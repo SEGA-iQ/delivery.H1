@@ -1,6 +1,6 @@
 // تعريف المتغيرات الأساسية
 const botToken = '2094023494:AAEpX9YYAv0mWx5qR3a2HJV5g_r9XbTrjNo';
-const chatId1 = '@delivery_iq'; // القناة الأولى
+const chatId1 = '@hsabat_iraq'; // القناة الأولى
 const chatId2 = '@crada_iraq'; // القناة الثانية
 const currentDataVersion = '3.0'; // قم بتغيير الإصدار عند تحديث البيانات
 
